@@ -1,10 +1,13 @@
 package com.gfdellatin.mytodolist.ui
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.gfdellatin.mytodolist.databinding.ActivityAddTaskBinding
+import com.gfdellatin.mytodolist.datasource.TaskDataSource
 import com.gfdellatin.mytodolist.extensions.format
 import com.gfdellatin.mytodolist.extensions.text
+import com.gfdellatin.mytodolist.model.Task
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
@@ -44,5 +47,18 @@ class AddTaskActivity : AppCompatActivity() {
             timePicker.show(supportFragmentManager, null)
         }
 
+        binding.btnCancel.setOnClickListener {
+            finish()
+        }
+
+        binding.btnCreateTask.setOnClickListener {
+            val task = Task(
+                title = binding.tilTitle.text,
+                hour = binding.tilDate.text,
+                date = binding.tilHour.text
+            )
+            TaskDataSource.insertTask(task)
+            Log.e("TAG", "insertListeners" + TaskDataSource.getList())
+        }
     }
 }
