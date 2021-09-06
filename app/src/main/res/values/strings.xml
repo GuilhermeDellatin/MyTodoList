@@ -5,6 +5,7 @@
     <string name="title">Título</string>
     <string name="date">Data</string>
     <string name="hour">Hora</string>
-    <string name="create_task">Criar Tarefa</string>
     <string name="cancel">Cancelar</string>
+    <string name="label_description_new_task">Nova Tarefa</string>
+    <string name="task_title">Dar ração para meus gatos</string>
 </resources>
