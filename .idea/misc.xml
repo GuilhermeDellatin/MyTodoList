@@ -3,9 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/guide/AndroidStudioProjects/MyTodoList/app/src/main/res/drawable/ic_empty_state.xml" value="0.18333333333333332" />
         <entry key="..\:/Users/guide/AndroidStudioProjects/MyTodoList/app/src/main/res/drawable/ic_navigate_before.xml" value="0.18703703703703703" />
         <entry key="..\:/Users/guide/AndroidStudioProjects/MyTodoList/app/src/main/res/layout/activity_add_task.xml" value="0.12" />
         <entry key="..\:/Users/guide/AndroidStudioProjects/MyTodoList/app/src/main/res/layout/activity_main.xml" value="0.12" />
+        <entry key="..\:/Users/guide/AndroidStudioProjects/MyTodoList/app/src/main/res/layout/empty_state.xml" value="0.14130434782608695" />
         <entry key="..\:/Users/guide/AndroidStudioProjects/MyTodoList/app/src/main/res/layout/item_task.xml" value="0.14130434782608695" />
         <entry key="..\:/Users/guide/AndroidStudioProjects/MyTodoList/app/src/main/res/menu/popup_menu.xml" value="0.1796875" />
       </map>

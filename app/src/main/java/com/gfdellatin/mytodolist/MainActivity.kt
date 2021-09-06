@@ -5,6 +5,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import com.gfdellatin.mytodolist.databinding.ActivityMainBinding
 import com.gfdellatin.mytodolist.datasource.TaskDataSource
 import com.gfdellatin.mytodolist.ui.AddTaskActivity
@@ -45,13 +46,19 @@ class MainActivity : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if(requestCode == CREATE_NEW_TASK && resultCode == Activity.RESULT_OK) {
+        if (requestCode == CREATE_NEW_TASK && resultCode == Activity.RESULT_OK) {
 
         }
     }
 
     private fun updateList() {
-        adapter.submitList(TaskDataSource.getList())
+        val list = TaskDataSource.getList()
+        binding.includeEmptyState.emptyState.visibility = if (list.isEmpty()) {
+            View.VISIBLE
+        } else {
+            View.GONE
+        }
+        adapter.submitList(list)
     }
 
     companion object {

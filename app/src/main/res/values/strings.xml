@@ -10,4 +10,5 @@
     <string name="task_title">Dar ração para meus gatos</string>
     <string name="menu_edit">Editar</string>
     <string name="action_delete">Deletar</string>
+    <string name="empty_task_text">Ops você não possui\n nenhuma tarefa</string>
 </resources>
