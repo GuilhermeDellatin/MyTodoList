@@ -38,7 +38,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         adapter.listenerDelete = {
-            Log.e("TAG", "listenerDelete: $it")
+            TaskDataSource.deleteTask(it)
+            updateList()
         }
     }
 
