@@ -8,4 +8,6 @@
     <string name="cancel">Cancelar</string>
     <string name="label_description_new_task">Nova Tarefa</string>
     <string name="task_title">Dar ração para meus gatos</string>
+    <string name="menu_edit">Editar</string>
+    <string name="action_delete">Deletar</string>
 </resources>
