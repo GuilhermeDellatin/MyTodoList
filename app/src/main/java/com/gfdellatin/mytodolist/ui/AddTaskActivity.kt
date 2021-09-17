@@ -2,13 +2,13 @@ package com.gfdellatin.mytodolist.ui
 
 import android.app.Activity
 import android.os.Bundle
-import android.util.Log
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import com.gfdellatin.mytodolist.App
 import com.gfdellatin.mytodolist.databinding.ActivityAddTaskBinding
-import com.gfdellatin.mytodolist.datasource.TaskDataSource
 import com.gfdellatin.mytodolist.extensions.format
 import com.gfdellatin.mytodolist.extensions.text
-import com.gfdellatin.mytodolist.model.Task
+import com.gfdellatin.mytodolist.data.model.Task
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
@@ -16,22 +16,15 @@ import java.util.*
 
 class AddTaskActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityAddTaskBinding
+    private val binding by lazy { ActivityAddTaskBinding.inflate(layoutInflater) }
+
+    private val taskViewModel: TaskViewModel by viewModels {
+        TaskViewModelFactory((application as App).repository)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        binding = ActivityAddTaskBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        if (intent.hasExtra(TASK_ID)) {
-            val taskId = intent.getIntExtra(TASK_ID, 0)
-            TaskDataSource.findById(taskId)?.let {
-                binding.tilTitle.text = it.title
-                binding.tilDate.text = it.date
-                binding.tilHour.text = it.hour
-            }
-        }
 
         insertListeners()
     }
@@ -67,16 +60,12 @@ class AddTaskActivity : AppCompatActivity() {
             val task = Task(
                 title = binding.tilTitle.text,
                 hour = binding.tilDate.text,
-                date = binding.tilHour.text,
-                id = intent.getIntExtra(TASK_ID, 0)
+                date = binding.tilHour.text
             )
-            TaskDataSource.insertTask(task)
+            taskViewModel.insert(task)
             setResult(Activity.RESULT_OK)
             finish()
         }
     }
 
-    companion object {
-        const val TASK_ID = "task_id"
-    }
 }
