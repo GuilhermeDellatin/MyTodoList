@@ -5,10 +5,10 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.gfdellatin.mytodolist.App
+import com.gfdellatin.mytodolist.data.model.Task
 import com.gfdellatin.mytodolist.databinding.ActivityAddTaskBinding
 import com.gfdellatin.mytodolist.extensions.format
 import com.gfdellatin.mytodolist.extensions.text
-import com.gfdellatin.mytodolist.data.model.Task
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
@@ -45,7 +45,8 @@ class AddTaskActivity : AppCompatActivity() {
                 .setTimeFormat(TimeFormat.CLOCK_24H)
                 .build()
             timePicker.addOnPositiveButtonClickListener {
-                val minute = if (timePicker.minute in 0..9) "0${timePicker.minute}" else timePicker.minute
+                val minute =
+                    if (timePicker.minute in 0..9) "0${timePicker.minute}" else timePicker.minute
                 val hour = if (timePicker.hour in 0..9) "0${timePicker.hour}" else timePicker.hour
                 binding.tilHour.text = "${hour}:${minute}"
             }

@@ -55,7 +55,6 @@ class MainActivity : AppCompatActivity() {
 
         adapter.listenerDelete = { task ->
             taskViewModel.deleteById(task)
-
         }
     }
 }

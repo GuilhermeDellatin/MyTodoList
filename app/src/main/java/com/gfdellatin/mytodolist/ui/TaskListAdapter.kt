@@ -7,13 +7,13 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.gfdellatin.mytodolist.R
-import com.gfdellatin.mytodolist.databinding.ItemTaskBinding
 import com.gfdellatin.mytodolist.data.model.Task
+import com.gfdellatin.mytodolist.databinding.ItemTaskBinding
 
-class TaskListAdapter: ListAdapter<Task, TaskListAdapter.TaskViewHolder>(DiffCallback()) {
+class TaskListAdapter : ListAdapter<Task, TaskListAdapter.TaskViewHolder>(DiffCallback()) {
 
-    var listenerEdit : (Task) -> Unit = {}
-    var listenerDelete : (Task) -> Unit = {}
+    var listenerEdit: (Task) -> Unit = {}
+    var listenerDelete: (Task) -> Unit = {}
 
     inner class TaskViewHolder(
         private val binding: ItemTaskBinding
@@ -53,7 +53,7 @@ class TaskListAdapter: ListAdapter<Task, TaskListAdapter.TaskViewHolder>(DiffCal
     }
 }
 
-class DiffCallback: DiffUtil.ItemCallback<Task>() {
+class DiffCallback : DiffUtil.ItemCallback<Task>() {
 
     override fun areContentsTheSame(oldItem: Task, newItem: Task) = oldItem.id == newItem.id
 
