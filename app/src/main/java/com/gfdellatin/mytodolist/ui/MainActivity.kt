@@ -1,7 +1,10 @@
 package com.gfdellatin.mytodolist.ui
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.gfdellatin.mytodolist.App
@@ -16,6 +19,11 @@ class MainActivity : AppCompatActivity() {
         TaskViewModelFactory((application as App).repository)
     }
 
+    private val register =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+            if (it.resultCode == Activity.RESULT_OK) getAllTasks()
+        }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
@@ -28,14 +36,21 @@ class MainActivity : AppCompatActivity() {
 
     private fun getAllTasks() {
         taskViewModel.getAll().observe(this, { tasks ->
+
+            binding.includeEmptyState.emptyState.visibility =
+                if (tasks.isNullOrEmpty()) View.VISIBLE
+                else {
+                    binding.rvTask.visibility = View.VISIBLE
+                    View.GONE
+                }
+
             adapter.submitList(tasks)
         })
     }
 
     private fun insertListeners() {
         binding.fab.setOnClickListener {
-            val intent = Intent(this@MainActivity, AddTaskActivity::class.java)
-            startActivity(intent)
+            register.launch(Intent(this@MainActivity, AddTaskActivity::class.java))
         }
 
         adapter.listenerDelete = { task ->
