@@ -1,5 +1,5 @@
 # MyTodoList
-Projeto criado no Bootcamp do Banco Santander de Android com Kotlin na plataforma DIO
+Projeto criado no Bootcamp do Banco Santander e Banco Carrefour de Android com Kotlin na plataforma DIO
 
 # Objetivos
 Desenvolver uma aplicação para salvar uma lista de tarefas.
